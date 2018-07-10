@@ -25,10 +25,7 @@ class SongsController < ApplicationController
   end
 
   def upload
-    ##create artists first then create songs
-    #song belongs to an artist
-    byebug
-    CSV.foreach(params[:file].path, headers: true) do |lead|
+    CSV.foreach(params[:file].path, headers: true) do |file|
       Song.create(title: file[0], artist_name: file[1])
     end
     redirect_to songs_path
